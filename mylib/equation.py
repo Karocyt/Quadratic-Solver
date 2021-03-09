@@ -66,7 +66,7 @@ class Equation:
             step.iteration += 1
             numbers = Equation.__non_null_complexs(left)
             if verbose:
-                print( f"\tStep {step.iteration: 2}:\t{' + '.join(str(n) for n in numbers)} = {right}")
+                print( f"\tStep {step.iteration: 2}:\t{' + '.join(str(n) for n in numbers)} = {int(right) if right.is_integer() else right}")
 
         def d0(left, right):
             step(left, right)
