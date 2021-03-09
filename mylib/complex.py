@@ -74,8 +74,14 @@ class ComplexNumber:
         try:
             val = int(components[0])
         except ValueError as e:
-            return ComplexNumber(1, get_x_exponent(components[0]))
-            raise InvalidExpression(f"{components[0]} is not a valid real float")
+            if len(components) == 1:
+                # natural hack, disgusting:
+                tmp = components[0].split('^')
+                if len(tmp[0]) > 1 and (tmp[0][-1] == 'x' or tmp[0][-1] == 'X'):
+                    return ComplexNumber(int(tmp[0][:-1]), int(tmp[1]))
+                return ComplexNumber(1, get_x_exponent(components[0]))
+            else:
+                raise e
         
         # get exponent
         if len(components) == 1:
