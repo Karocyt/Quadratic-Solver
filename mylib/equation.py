@@ -56,13 +56,18 @@ class Equation:
 
         def d0(left, right):
             if right == 0:
-                print("Nothing to be solved here, 0 is indeed equal to itself.")
+                print("All real numbers are a solution.")
             else:
                 print("There is something really wrong with your mathematics: The sum of the 2 sides of an equation should equal zero, this is the whole point of the thing!")
-            return "FAIL"
 
         def d1(left, right):
-            return NotImplemented
+            if right == 0:
+                print("The solution is 0.")
+            else:
+                right /= left[1]
+                left[1] = 1
+                step(left, right)
+                print(f"The solution is {right}.")
 
         def d2(left, right):
             return NotImplemented
