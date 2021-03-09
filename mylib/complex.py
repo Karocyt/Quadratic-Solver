@@ -40,6 +40,8 @@ class ComplexNumber:
     def __str__(self):
         if self.exp == 0:
             return f"{self.val}"
+        if self.val == 1 and self.exp == 1:
+            return f"x"
         if self.val == 1:
             return f"x^{self.exp}"
         if self.val == -1:
