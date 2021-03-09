@@ -66,6 +66,8 @@ class ComplexNumber:
             exp = 0
         else:
             subcomponents = components[1].split('^')
+            if len(subcomponents) == 1 and (subcomponents[0] == "X" or subcomponents[0] == "x"):
+                return ComplexNumber(val, 1)
             if len(subcomponents) == 0 or len(subcomponents) > 2 or (subcomponents[0] != "X" and subcomponents[0] != "x"):
                 raise InvalidExpression(f"{components[1]} is not a valid complex number for this solver")
             try:
