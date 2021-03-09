@@ -38,19 +38,21 @@ class ComplexNumber:
         return ComplexNumber(-self.val, self.exp)
 
     def __str__(self):
-        if self.exp == 0:
-            return f"{self.val}"
-        if self.val == 1 and self.exp == 1:
+        exp = self.exp
+        val = int(self.val) if self.val.is_integer() else self.val
+        if exp == 0:
+            return f"{val}"
+        if val == 1 and exp == 1:
             return f"x"
-        if self.val == -1 and self.exp == 1:
+        if val == -1 and exp == 1:
             return f"-x"
-        if self.val == 1:
-            return f"x^{self.exp}"
-        if self.val == -1:
-            return f"-x^{self.exp}"
-        if self.exp == 1:
-            return f"{self.val}x"
-        return f"{self.val}x^{self.exp}"
+        if val == 1:
+            return f"x^{exp}"
+        if val == -1:
+            return f"-x^{exp}"
+        if exp == 1:
+            return f"{val}x"
+        return f"{val}x^{exp}"
 
     def __repr__(self):
         return str(self)
