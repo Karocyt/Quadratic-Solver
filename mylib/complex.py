@@ -49,6 +49,19 @@ class ComplexNumber:
 
     @staticmethod
     def fromString(line):
+        def get_x_exponent(expr):
+            subcomponents = expr.split('^')
+            if len(subcomponents) == 0 or len(subcomponents) > 2:
+                raise InvalidExpression("Extraneous '^' found in expression")
+            if len(subcomponents) == 1 and (subcomponents[0] == "X" or subcomponents[0] == "x"):
+                return 1
+            if (subcomponents[0] != "X" and subcomponents[0] != "x"):
+                raise InvalidExpression(f"{subcomponents[0]} cannot be exponentiated")
+            try:
+                return int(subcomponents[1])
+            except Exception as e:
+                raise InvalidExpression(f"Invalid X exponent")
+        
         if line == "X" or line == "x":
             return ComplexNumber(1, 1)
         components = line.split('*')
@@ -59,19 +72,12 @@ class ComplexNumber:
         try:
             val = float(components[0])
         except Exception as e:
+            return ComplexNumber(1, get_x_exponent(components[0]))
             raise InvalidExpression(f"{components[0]} is not a valid real float")
         
         # get exponent
         if len(components) == 1:
             exp = 0
         else:
-            subcomponents = components[1].split('^')
-            if len(subcomponents) == 1 and (subcomponents[0] == "X" or subcomponents[0] == "x"):
-                return ComplexNumber(val, 1)
-            if len(subcomponents) == 0 or len(subcomponents) > 2 or (subcomponents[0] != "X" and subcomponents[0] != "x"):
-                raise InvalidExpression(f"{components[1]} is not a valid complex number for this solver")
-            try:
-                exp = int(subcomponents[1])
-            except Exception as e:
-                raise InvalidExpression(f"Invalid X exponent for {val}")
+            exp = get_x_exponent(components[1])
         return ComplexNumber(val, exp)

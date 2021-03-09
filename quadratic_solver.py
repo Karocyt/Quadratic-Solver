@@ -13,7 +13,7 @@ if __name__ == "__main__":
 
     try:
         eq = Equation(args.equation)
-    except Exception as e:
+    except ValueError as e:
         print(f"Error: {str(e)}")
         exit(42)
 
