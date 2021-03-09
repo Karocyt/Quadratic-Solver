@@ -36,6 +36,8 @@ class Equation:
         for i in range(len(exp_list)):
             if exp_list[i] != 0:
                 numbers.append(ComplexNumber(exp_list[i], i))
+        if len(numbers) == 0:
+            numbers.append(ComplexNumber(0, 0))
         return numbers
 
     def __str__(self):
@@ -53,7 +55,11 @@ class Equation:
                 print( f"\tStep {step.iteration: 2}:\t{' + '.join(str(n) for n in numbers)} = {right}")
 
         def d0(left, right):
-            return NotImplemented
+            if right == 0:
+                print("Nothing to be solved here, 0 is indeed equal to itself.")
+            else:
+                print("There is something really wrong with your mathematics: The sum of the 2 sides of an equation should equal zero, this is the whole point of the thing!")
+            return "FAIL"
 
         def d1(left, right):
             return NotImplemented
@@ -68,5 +74,5 @@ class Equation:
         step(left, right)
 
         fun = (d0, d1, d2)
-        
+
         return fun[self.degree](left, right)
