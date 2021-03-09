@@ -49,6 +49,8 @@ class ComplexNumber:
 
     @staticmethod
     def fromString(line):
+        if line == "X" or line == "x":
+            return ComplexNumber(1, 0)
         components = line.split('*')
         if len(components) > 2 or len(components) == 0:
             raise InvalidExpression(f"Invalid expression: {line}")
