@@ -10,13 +10,29 @@ class Equation:
             sides.append(["0"])
         elif len(sides) > 2:
             raise InvalidExpression(f"Too many '=' signs found in expression '{line}'")
-        self.left = [ComplexNumber.fromString(s) for s in sides[0]]
-        self.right = [ComplexNumber.fromString(s) for s in sides[1]]
-        self.left.sort(key=lambda x: x.exp)
-        self.right.sort(key=lambda x: x.exp)
+        tmp_left = [ComplexNumber.fromString(s) for s in sides[0]]
+        tmp_right = [ComplexNumber.fromString(s) for s in sides[1]]
+
+        self.expressions = [0, 0, 0]
+        self.result = ComplexNumber(0, 0)
+        # regroup complexs to the left side:
+        for n in tmp_right:
+            if n.exp > 0:
+                self.expressions[n.exp] -= n.val
+            else:
+                self.result += n
+        for n in tmp_left:
+            if n.exp > 0:
+                self.expressions[n.exp] += n.val
+            else:
+                self.result -= n
 
     def __str__(self):
-        return f"{' + '.join(str(n) for n in self.left)} = {' + '.join(str(n) for n in self.right)}"
+        numbers = []
+        for i in range(len(self.expressions)):
+            if self.expressions[i] != 0.0:
+                numbers.append(ComplexNumber(self.expressions[i], i))
+        return f"{' + '.join(str(n) for n in numbers)} = {str(self.result)}"
 
     def __repr__(self):
         return self.__str__()
