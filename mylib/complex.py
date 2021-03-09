@@ -5,7 +5,7 @@ class ComplexNumber:
     def __init__(self, val=0.0, exp=0):
         if exp > 2:
             raise InvalidExpression(f"This solver can only solve quadratic equations (up to x²), {exp} is > 2 in the expression '{val} * X ^ {exp}'")
-        if exp < 0:
+        elif exp < 0:
             raise InvalidExpression(f"An exponent cannot be negative, {exp} is negative in the expression '{val} * X ^ {exp}'")
         self.val = val
         self.exp = exp
