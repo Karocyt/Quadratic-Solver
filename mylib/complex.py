@@ -4,9 +4,9 @@ class ComplexNumber:
     
     def __init__(self, val=0.0, exp=0):
         if exp > 2:
-            raise InvalidExpression(f"This solver can only solve quadratic equations (up to x²), {exp} is > 2 in the expression '{val} ^ {exp}'")
+            raise InvalidExpression(f"This solver can only solve quadratic equations (up to x²), {exp} is > 2 in the expression '{val} * X ^ {exp}'")
         if exp < 0:
-            raise InvalidExpression(f"An exponent cannot be negative, {exp} is negative in the expression '{val} ^ {exp}'")
+            raise InvalidExpression(f"An exponent cannot be negative, {exp} is negative in the expression '{val} * X ^ {exp}'")
         self.val = val
         self.exp = exp
 
@@ -69,5 +69,5 @@ class ComplexNumber:
             try:
                 exp = int(subcomponents[1])
             except Exception as e:
-                raise InvalidExpression(f"{subcomponents[1]} is not a valid integer (to be an exponent)")
+                raise InvalidExpression(f"Invalid X exponent for {val}")
         return ComplexNumber(val, exp)

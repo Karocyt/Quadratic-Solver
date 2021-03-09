@@ -14,25 +14,20 @@ class Equation:
         tmp_right = [ComplexNumber.fromString(s) for s in sides[1]]
 
         self.expressions = [0, 0, 0]
-        self.result = ComplexNumber(0, 0)
-        # regroup complexs to the left side:
+        # regroup to the left side:
         for n in tmp_right:
-            if n.exp > 0:
-                self.expressions[n.exp] -= n.val
-            else:
-                self.result += n
+            self.expressions[n.exp] -= n.val
         for n in tmp_left:
-            if n.exp > 0:
-                self.expressions[n.exp] += n.val
-            else:
-                self.result -= n
+            self.expressions[n.exp] += n.val
+
+        self.degree = 2 if self.expressions[2] != 0 else (1 if self.expressions[1] != 0 else 0)
 
     def __str__(self):
         numbers = []
         for i in range(len(self.expressions)):
             if self.expressions[i] != 0.0:
                 numbers.append(ComplexNumber(self.expressions[i], i))
-        return f"{' + '.join(str(n) for n in numbers)} = {str(self.result)}"
+        return f"{' + '.join(str(n) for n in numbers)} = 0.0"
 
     def __repr__(self):
         return self.__str__()
