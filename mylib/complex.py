@@ -41,10 +41,12 @@ class ComplexNumber:
         if self.exp == 0:
             return f"{self.val}"
         if self.val == 1:
-            return f"X^{int(self.exp)}"
+            return f"x^{self.exp}"
         if self.val == -1:
-            return f"-X^{int(self.exp)}"
-        return f"{self.val}x^{int(self.exp)}"
+            return f"-x^{self.exp}"
+        if self.exp == 1:
+            return f"{self.val}x"
+        return f"{self.val}x^{self.exp}"
 
     def __repr__(self):
         return str(self)
