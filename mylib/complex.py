@@ -59,7 +59,7 @@ class ComplexNumber:
                 raise InvalidExpression(f"{subcomponents[0]} cannot be exponentiated")
             try:
                 return int(subcomponents[1])
-            except Exception as e:
+            except ValueError as e:
                 raise InvalidExpression(f"Invalid X exponent")
         
         if line == "X" or line == "x":
@@ -71,7 +71,7 @@ class ComplexNumber:
         # get float
         try:
             val = float(components[0])
-        except Exception as e:
+        except ValueError as e:
             return ComplexNumber(1, get_x_exponent(components[0]))
             raise InvalidExpression(f"{components[0]} is not a valid real float")
         
