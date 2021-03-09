@@ -3,6 +3,8 @@ from .exceptions import MismatchingExponentError, InvalidExpression
 class ComplexNumber:
     
     def __init__(self, val=0.0, exp=0):
+        if exp > 2:
+            raise InvalidExpression(f"This solver can only solve quadratic equations (up to x²), {exp} is > 2 in the expression '{val} ^ {exp}'")
         self.val = val
         self.exp = exp
 
