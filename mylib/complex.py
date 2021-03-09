@@ -40,12 +40,14 @@ class ComplexNumber:
     def __str__(self):
         if self.exp == 0:
             return f"{self.val}"
-        return f"{self.val} * X^{int(self.exp)}"
+        if self.val == 1:
+            return f"X^{int(self.exp)}"
+        if self.val == -1:
+            return f"-X^{int(self.exp)}"
+        return f"{self.val}x^{int(self.exp)}"
 
     def __repr__(self):
-        if self.exp == 0:
-            return f"{self.val}"
-        return f"{self.val}.x^{int(self.exp)}"
+        return str(self)
 
     @staticmethod
     def fromString(line):
@@ -68,9 +70,9 @@ class ComplexNumber:
         if len(components) > 2 or len(components) == 0:
             raise InvalidExpression(f"Invalid expression: {line}")
         
-        # get float
+        # get val
         try:
-            val = float(components[0])
+            val = int(components[0])
         except ValueError as e:
             return ComplexNumber(1, get_x_exponent(components[0]))
             raise InvalidExpression(f"{components[0]} is not a valid real float")

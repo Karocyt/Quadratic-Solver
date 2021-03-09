@@ -6,6 +6,8 @@ class Equation:
     def __init__(self, line):
         line = line.replace(" ", "").replace("-", "+-")
         sides = [s.split('+') for s in line.split("=")]
+
+        # case of leading - (now "+-"): split at '+' would create an empty value
         for i in range(len(sides)):
             if sides[i][0] == "" and len(sides[i]) > 1:
                 sides[i] = sides[i][1:]
@@ -28,15 +30,30 @@ class Equation:
     def degree(self):
         return 2 if self.expressions[2] != 0 else (1 if self.expressions[1] != 0 else 0)
 
-    def __str__(self):
+    @staticmethod
+    def __non_null_complexs(exp_list):
         numbers = []
-        for i in range(len(self.expressions)):
-            if self.expressions[i] != 0.0:
-                numbers.append(ComplexNumber(self.expressions[i], i))
-        return f"{' + '.join(str(n) for n in numbers)} = 0.0"
+        for i in range(len(exp_list)):
+            if exp_list[i] != 0:
+                numbers.append(ComplexNumber(exp_list[i], i))
+        return numbers
+
+    def __str__(self):
+        numbers = Equation.__non_null_complexs(self.expressions)
+        return f"{' + '.join(str(n) for n in numbers)} = 0"
 
     def __repr__(self):
         return self.__str__()
 
     def solve(self, verbose):
-        print(f"Solving (verbose = {verbose})...")
+        def step(left, right):
+            step.iteration += 1
+            numbers = Equation.__non_null_complexs(left)
+            if verbose:
+                print( f"\tStep {step.iteration: 2}:\t{' + '.join(str(n) for n in numbers)} = {right}")
+        step.iteration = 0
+
+        left, right = self.expressions, -self.expressions[0]
+        left[0] = 0.0
+        step(left, right)
+
