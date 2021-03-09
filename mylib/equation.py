@@ -19,7 +19,7 @@ class Equation:
         tmp_left = [ComplexNumber.fromString(s) for s in sides[0]]
         tmp_right = [ComplexNumber.fromString(s) for s in sides[1]]
 
-        self.expressions = [0, 0, 0]
+        self.expressions = [0.0, 0.0, 0.0]
         # regroup to the left side:
         for n in tmp_right:
             self.expressions[n.exp] -= n.val
@@ -32,7 +32,7 @@ class Equation:
 
     @property
     def discriminant(self):
-        return (self.b ^ 2) - 4 * self.a * self.c
+        return (self.b ** 2) - 4 * self.a * self.c
 
     @property
     def a(self):

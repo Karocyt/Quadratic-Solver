@@ -78,7 +78,7 @@ class ComplexNumber:
         
         # get val
         try:
-            val = int(components[0])
+            val = float(components[0])
         except ValueError as e:
             if len(components) == 1:
                 # natural hack, disgusting:
@@ -87,12 +87,12 @@ class ComplexNumber:
                     nb = tmp[0][:-1]
                     if len(nb) == 1 and nb[0] == '-':
                         nb = -1
-                    return ComplexNumber(int(nb), int(tmp[1]))
+                    return ComplexNumber(float(nb), int(tmp[1]))
                 if len(tmp) == 1 and len(tmp[0]) > 1 and (tmp[0][-1] == 'x' or tmp[0][-1] == 'X'):
                     nb = tmp[0][:-1]
                     if len(nb) == 1 and nb[0] == '-':
                         nb = -1
-                    return ComplexNumber(int(nb), 1)
+                    return ComplexNumber(float(nb), 1)
                 return ComplexNumber(1, get_x_exponent(components[0]))
             else:
                 raise e
