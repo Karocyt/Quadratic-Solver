@@ -30,6 +30,20 @@ class Equation:
     def degree(self):
         return 2 if self.expressions[2] != 0 else (1 if self.expressions[1] != 0 else 0)
 
+    @property
+    def discriminant(self):
+        return (self.b ^ 2) - 4 * self.a * self.c
+
+    @property
+    def a(self):
+        return self.expressions[2]
+    @property
+    def b(self):
+        return self.expressions[1]
+    @property
+    def c(self):
+        return self.expressions[0]  
+
     @staticmethod
     def __non_null_complexs(exp_list):
         numbers = []
@@ -55,28 +69,39 @@ class Equation:
                 print( f"\tStep {step.iteration: 2}:\t{' + '.join(str(n) for n in numbers)} = {right}")
 
         def d0(left, right):
+            step(left, right)
             if right == 0:
                 print("All real numbers are a solution.")
             else:
                 print("There is something really wrong with your mathematics: The sum of the 2 sides of an equation should equal zero, this is the whole point of the thing!")
 
         def d1(left, right):
+            step(left, right)
             if right == 0:
                 print("The solution is 0.")
             else:
                 right /= left[1]
                 left[1] = 1
                 step(left, right)
-                print(f"The solution is {right}.")
+                print(f"The solution is:\n{right}")
 
         def d2(left, right):
-            return NotImplemented
+            d = self.discriminant
+            if verbose:
+                print(f"Discriminant: {d}")
+            step(left, right)
+            if d < 0:
+                print("Discriminant is stricly negative, there is no real solution.")
+                return
+            if d == 0:
+                print("Discriminant is stricly null, the unique solution is:")
+            if d > 0:
+                print("Discriminant is stricly positive, the two solutions are:")
 
         step.iteration = 0
 
         left, right = self.expressions, -self.expressions[0]
         left[0] = 0.0
-        step(left, right)
 
         fun = (d0, d1, d2)
 
