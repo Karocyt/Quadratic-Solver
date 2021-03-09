@@ -97,9 +97,6 @@ class ComplexNumber:
             else:
                 raise e
         
-
-        print(3)
-        
         # get exponent
         if len(components) == 1:
             exp = 0
