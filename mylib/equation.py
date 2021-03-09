@@ -6,6 +6,10 @@ class Equation:
     def __init__(self, line):
         line = line.replace(" ", "").replace("-", "+-")
         sides = [s.split('+') for s in line.split("=")]
+        for i in range(len(sides)):
+            if sides[i][0] == "" and len(sides[i]) > 1:
+                sides[i] = sides[i][1:]
+
         if len(sides) < 2:
             sides.append(["0"])
         elif len(sides) > 2:
@@ -20,7 +24,9 @@ class Equation:
         for n in tmp_left:
             self.expressions[n.exp] += n.val
 
-        self.degree = 2 if self.expressions[2] != 0 else (1 if self.expressions[1] != 0 else 0)
+    @property
+    def degree(self):
+        return 2 if self.expressions[2] != 0 else (1 if self.expressions[1] != 0 else 0)
 
     def __str__(self):
         numbers = []
@@ -31,3 +37,6 @@ class Equation:
 
     def __repr__(self):
         return self.__str__()
+
+    def solve(self, verbose):
+        print(f"Solving (verbose = {verbose})...")
