@@ -51,9 +51,22 @@ class Equation:
             numbers = Equation.__non_null_complexs(left)
             if verbose:
                 print( f"\tStep {step.iteration: 2}:\t{' + '.join(str(n) for n in numbers)} = {right}")
+
+        def d0(left, right):
+            return NotImplemented
+
+        def d1(left, right):
+            return NotImplemented
+
+        def d2(left, right):
+            return NotImplemented
+
         step.iteration = 0
 
         left, right = self.expressions, -self.expressions[0]
         left[0] = 0.0
         step(left, right)
 
+        fun = (d0, d1, d2)
+        
+        return fun[self.degree](left, right)

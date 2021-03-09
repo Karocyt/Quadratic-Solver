@@ -20,4 +20,4 @@ if __name__ == "__main__":
     print("Reduced form:", eq)
     print("Polynomial degree:", eq.degree)
 
-    eq.solve(args.verbose)
+    print(eq.solve(args.verbose))
