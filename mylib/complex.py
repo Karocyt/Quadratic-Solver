@@ -77,8 +77,10 @@ class ComplexNumber:
             if len(components) == 1:
                 # natural hack, disgusting:
                 tmp = components[0].split('^')
-                if len(tmp[0]) > 1 and (tmp[0][-1] == 'x' or tmp[0][-1] == 'X'):
+                if len(tmp) == 2 and len(tmp[0]) > 1 and (tmp[0][-1] == 'x' or tmp[0][-1] == 'X'):
                     return ComplexNumber(int(tmp[0][:-1]), int(tmp[1]))
+                if len(tmp) == 1 and len(tmp[0]) > 1 and (tmp[0][-1] == 'x' or tmp[0][-1] == 'X'):
+                    return ComplexNumber(int(tmp[0][:-1]), 1)
                 return ComplexNumber(1, get_x_exponent(components[0]))
             else:
                 raise e
