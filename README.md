@@ -15,5 +15,9 @@ pip3 install -r requirements.txt
 
 A `-v` (verbose) option is available to show major steps.
 
+### Ressources
+
+[Equations du 2nd degré et solutions complexes [FR]](https://www.mathematiquesfaciles.com/solutions-complexes-d-une-equation-de-degre-2_2_45257.htm)
+
 ### Author
 Kevin Azoulay-Dessus aka Kevazoul
