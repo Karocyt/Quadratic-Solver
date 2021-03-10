@@ -1,11 +1,11 @@
 #! /usr/bin/sh
 
 echo "No Degree:"
-./quadratic_solver -v "5 * X^0 = 4 * X^0 + 1"
+./quadratic_solver -v "5 = 4 + 1"
 echo "REAL RESULT: All"
 echo
 echo "First Degree:"
-./quadratic_solver -v "5 * X^0 + 4 * X^1 = 4 * X^0"
+./quadratic_solver -v "5 + 4x = 4"
 echo "REAL RESULT: -0.25"
 echo
 echo "Second Degree, positive discriminant:"
