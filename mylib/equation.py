@@ -1,5 +1,8 @@
+import copy
+
 from .exceptions import InvalidExpression
 from .complex import ComplexNumber
+from .utils import newton_sqrt
 
 class Equation:
 
@@ -32,7 +35,8 @@ class Equation:
 
     @property
     def discriminant(self):
-        return (self.b ** 2) - 4 * self.a * self.c
+        print(self.b ** 2, self.a, self.c, 4 * self.a * self.c)
+        return (self.b ** 2) - (4 * self.a * self.c)
 
     @property
     def a(self):
@@ -73,7 +77,7 @@ class Equation:
             if right == 0:
                 print("All real numbers are a solution.")
             else:
-                print("There is something really wrong with your mathematics: The sum of the 2 sides of an equation should equal zero, this is the whole point of the thing!")
+                print("There is something really wrong with your mathematics: The substraction of the 2 sides of an equation should boil down to zero, this is the whole point of the thing!")
 
         def d1(left, right):
             step(left, right)
@@ -93,14 +97,21 @@ class Equation:
             if d < 0:
                 print("Discriminant is stricly negative, there is no real solution.")
                 return
+            
+
+
             if d == 0:
                 print("Discriminant is stricly null, the unique solution is:")
             if d > 0:
                 print("Discriminant is stricly positive, the two solutions are:")
+                s1 = (-self.b + newton_sqrt((self.b**2) - (4 * self.a * self.c))) / (2*self.a)
+                s2 = (-self.b - newton_sqrt((self.b**2) - (4 * self.a * self.c))) / (2*self.a)
+                print(s1)
+                print(s2)
 
         step.iteration = 0
 
-        left, right = self.expressions, -self.expressions[0]
+        left, right = copy.deepcopy(self.expressions), -self.expressions[0]
         left[0] = 0.0
 
         fun = (d0, d1, d2)
