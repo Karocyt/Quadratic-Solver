@@ -2,7 +2,7 @@
 A basic command-line tool to solve simple linear and quadratic equations
 
 ## Setup
-The only dependancy would be `argparse`:
+The only dependency would be `argparse`:
 
 ```bash
 pip3 install -r requirements.txt
