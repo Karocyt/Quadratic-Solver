@@ -27,3 +27,7 @@ echo
 echo "Deg0 not solvable:"
 ./quadratic_solver -v "5 = 1 + 0x"
 echo "REAL RESULT: UNSOLVABLE"
+echo
+echo "Negative exponent:"
+./quadratic_solver -v "5 + 13x + 3x^-2 = 1 + x"
+echo "REAL RESULTS: -3.6329931618555 and -0.36700683814455"
