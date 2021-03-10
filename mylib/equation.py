@@ -93,13 +93,10 @@ class Equation:
             if verbose:
                 print(f"Discriminant: {d}")
             # step(left, right)
-            if d < 0:
-                print("Discriminant is stricly negative, there is no real solution.")
-                return
             if d == 0:
                 print("Discriminant is stricly null, the unique solution is:")
                 print(-self.b / (2 * self.a))
-            if d > 0:
+            elif d > 0:
                 print("Discriminant is stricly positive, the two solutions are:")
                 b2 = self.b ** 2
                 ac4 = 4 * self.a * self.c
@@ -109,6 +106,9 @@ class Equation:
                 s2 = ((-self.b) - sqrt) / denominator
                 print(s1)
                 print(s2)
+            elif d < 0:
+                print("Discriminant is stricly negative, there is no real solution.")
+                return
 
         step.iteration = 0
 
