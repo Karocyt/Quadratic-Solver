@@ -1,14 +1,14 @@
 # Quadratic-Solver
 A basic command-line tool to solve simple linear and quadratic equations
 
-# Setup
+## Setup
 The only dependancy would be `argparse`:
 
 ```bash
 pip3 install -r requirements.txt
 ```
 
-# Run
+## Run
 ```bash
 ./quadratic_solver "1x + 3x^2 = 5 + x"
 ```
