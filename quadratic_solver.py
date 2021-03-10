@@ -4,6 +4,7 @@ import os
 import argparse
 
 from mylib import Equation
+from mylib.exceptions import CustomError
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -13,7 +14,7 @@ if __name__ == "__main__":
 
     try:
         eq = Equation(args.equation)
-    except ValueError as e:
+    except CustomError as e:
         print(f"Error: {str(e)}")
         exit(42)
 

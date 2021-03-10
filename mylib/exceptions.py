@@ -1,5 +1,8 @@
-class MismatchingExponentError(ValueError):
+class CustomError(Exception):
     pass
 
-class InvalidExpression(ValueError):
+class MismatchingExponentError(CustomError):
+    pass
+
+class InvalidExpression(CustomError):
     pass

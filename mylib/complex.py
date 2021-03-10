@@ -7,7 +7,7 @@ class ComplexNumber:
             raise InvalidExpression(f"This solver can only solve quadratic equations (up to x²), {exp} is > 2 in the expression '{val} * X ^ {exp}'")
         elif exp < 0:
             raise InvalidExpression(f"An exponent cannot be negative, {exp} is negative in the expression '{val} * X ^ {exp}'")
-        self.val = val
+        self.val = float(val)
         self.exp = exp
 
     def __add__(self, target):
