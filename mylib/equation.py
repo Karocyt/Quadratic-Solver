@@ -93,19 +93,21 @@ class Equation:
             d = self.discriminant
             if verbose:
                 print(f"Discriminant: {d}")
-            step(left, right)
+            # step(left, right)
             if d < 0:
                 print("Discriminant is stricly negative, there is no real solution.")
                 return
-            
 
-
+            b2 = self.b ** 2
+            ac4 = 4 * self.a * self.c
+            sqrt = newton_sqrt(b2 - ac4)
+            denominator = 2 * self.a
             if d == 0:
                 print("Discriminant is stricly null, the unique solution is:")
             if d > 0:
                 print("Discriminant is stricly positive, the two solutions are:")
-                s1 = (-self.b + newton_sqrt((self.b**2) - (4 * self.a * self.c))) / (2*self.a)
-                s2 = (-self.b - newton_sqrt((self.b**2) - (4 * self.a * self.c))) / (2*self.a)
+                s1 = ((-self.b) + sqrt) / denominator
+                s2 = ((-self.b) - sqrt) / denominator
                 print(s1)
                 print(s2)
 
