@@ -1,4 +1,4 @@
-#! /usr/bin/sh
+#! /usr/bin/env sh
 
 echo "No Degree:"
 ./quadratic_solver -v "5 = 4 + 1"
