@@ -68,9 +68,12 @@ class ComplexNumber:
             if (subcomponents[0] != "X" and subcomponents[0] != "x"):
                 raise InvalidExpression(f"{subcomponents[0]} cannot be exponentiated")
             try:
-                return int(subcomponents[1])
+                ret = int(subcomponents[1])
             except ValueError as e:
                 raise InvalidExpression(f"Invalid X exponent")
+            if ret < 0:
+                raise InvalidExpression(f"Negative exponent")
+            return ret
         
         if line == "X" or line == "x":
             return ComplexNumber(1, 1)

@@ -7,7 +7,7 @@ from .utils import newton_sqrt
 class Equation:
 
     def __init__(self, line):
-        line = line.replace(" ", "").replace("-", "+-")
+        line = line.replace(" ", "").replace("-", "+-").replace("^+-", "^-")
         sides = [s.split('+') for s in line.split("=")]
 
         # case of leading - (now "+-"): split at '+' would create an empty value
