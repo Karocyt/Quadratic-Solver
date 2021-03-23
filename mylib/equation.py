@@ -107,7 +107,14 @@ class Equation:
                 print(s1)
                 print(s2)
             elif d < 0:
-                print("Discriminant is stricly negative, there is no real solution.")
+                print("Discriminant is stricly negative, there is no real solution.\nThe conjugate pair of complex solutions is:")
+                b2 = self.b ** 2
+                ac4 = 4 * self.a * self.c
+                discriminant = b2 - ac4
+                ## -b +/- sqrt(discriminant)     -b +/- sqrt(-1 * -discriminant)   -b +/- sqrt(discriminant) * i
+                ## -------------------------  = -------------------------------- = -----------------------------
+                ##             2a                               2a                              2a
+                print(f"({-self.b} +/- {newton_sqrt(-discriminant)}i)/{2 * self.a}")
                 return
 
         step.iteration = 0
